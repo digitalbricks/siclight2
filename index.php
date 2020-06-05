@@ -162,7 +162,7 @@
         
 
         <div class="licenses">
-            SIC LIGHT by <a href="https://www.andreherdling.de">André Herdling</a> | <a href="license.txt">Licenses &amp; used software</a>
+            SIC LIGHT by <a href="https://www.andreherdling.de">André Herdling</a> | <a href="licenses.txt">Licenses &amp; used software</a>
         </div>     
     </div>
  
