@@ -77,3 +77,15 @@ Try hitting the refresh button next to a site in SIC or the _Refresh All_ button
 
 This is all. But a previous backup is **always** a great idea.
 
+
+## Migration from version 1.x to version 2.x
+1. Make a complete backup of your old installation (just for the case)
+2. Delete all files and folders from version 1 **except `sites-config.php` and folder `/history`**
+3. Download the newest version from GitHub
+4. Remove file `sites-config.NEW.php` and folder `/history` from the download (version 2)
+6. Copy the downloaded and prepared version 2 files and folders to the place where your version 1 was
+
+(Essentially: Just keep `sites-config.php` and `/history`, don't care about all other files and folders.)
+
+Maybe you will need to refresh your browser cache when first opening the new version, as your browser may have still JS and CSS files from version 1 in cache.
+
