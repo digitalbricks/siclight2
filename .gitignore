@@ -1,0 +1,4 @@
+sites-config.php
+history/*.csv
+tests
+.DS_Store
