@@ -1,5 +1,10 @@
 <?php
-// NOTE: We do not use ../init.php here, because we want to check for an specific error code
+/**
+ * NOTE: We do not use ../init.php here, because we want to check for an specific error code.
+ * We also do not check the config file directly – because its path may change – but use
+ * the class instead.
+ *
+ */
 header('Content-Type: application/json');
 require_once(dirname(__FILE__).'/../classes/SIC.class.php');
 $file_is_present = true;
