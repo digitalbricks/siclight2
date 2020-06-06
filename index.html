@@ -72,37 +72,41 @@
                             </div>
     
     
-    
-                            <table class='sites uk-table uk-table-divider'>
-                                <thead>
-                                    <tr>
-                                        <th @click="sort('name')" class="sortable" :class="{ 'sort': currentSort === 'name' , 'sort-desc': currentSort === 'name' && currentSortDir === 'desc' }">Name</th>
-                                        <th @click="sort('sys')" class="sortable" :class="{ 'sort': currentSort === 'sys' , 'sort-desc': currentSort === 'sys' && currentSortDir === 'desc' }">System</th>
-                                        <th @click="sort('sys_ver')" class="sortable" :class="{ 'sort': currentSort === 'sys_ver' , 'sort-desc': currentSort === 'sys_ver' && currentSortDir === 'desc' }">Sys Ver</th>
-                                        <th @click="sort('php_ver')" class="sortable" :class="{ 'sort': currentSort === 'php_ver' , 'sort-desc': currentSort === 'php_ver' && currentSortDir === 'desc' }">PHP Ver</th>
-                                        <th @click="sort('sat_ver')" class="sortable" :class="{ 'sort': currentSort === 'sat_ver' , 'sort-desc': currentSort === 'sat_ver' && currentSortDir === 'desc' }">Sat Ver</th>
-                                        <th>Refreshed</th>
-                                        <td>&nbsp;</td>
-                                    </tr>
-                                </thead>
-                                <tbody class="js-filter">
-                                    <template>
-                                        <tr class="active_site" :class="site.state" v-for="(site,key) in sortedSites" :key="site.hash">
-                                            <td>{{ site.name }}</td>
-                                            <td>{{ site.sys }}</td>
-                                            <td class="sys_ver">{{ site.sys_ver }}</td>
-                                            <td class="php_ver">{{ site.php_ver }}</td>
-                                            <td class="sat_ver">{{ site.sat_ver }}</td>
-                                            <td class="time">{{ site.date }}<template v-if="site.time !== ''">, </template>{{ site.time }}</td>
-                                            <td class="actions">
-                                                <span uk-lightbox><a v-if="site.history" class="history uk-button uk-button-default" :href="site.history" data-type="iframe" data-uk-tooltip title="Show history"><span :uk-icon="'icon: clock'"></span></a></span>
-                                                <button @click="refreshSingleSite" :data-id="site.hash" :data-name="site.name" class="refresh uk-button uk-button-primary" type="button" data-uk-tooltip title="Refresh"><span uk-icon="icon: refresh"></span></button>
-                                            </td>
+                            <!-- uk-overflow-auto -->
+                            <div class="uk-overflow-auto">
+                                <table class='sites uk-table uk-table-divider'>
+                                    <thead>
+                                        <tr>
+                                            <th @click="sort('name')" class="sortable" :class="{ 'sort': currentSort === 'name' , 'sort-desc': currentSort === 'name' && currentSortDir === 'desc' }">Name</th>
+                                            <th @click="sort('sys')" class="sortable" :class="{ 'sort': currentSort === 'sys' , 'sort-desc': currentSort === 'sys' && currentSortDir === 'desc' }">System</th>
+                                            <th @click="sort('sys_ver')" class="sortable" :class="{ 'sort': currentSort === 'sys_ver' , 'sort-desc': currentSort === 'sys_ver' && currentSortDir === 'desc' }">Sys Ver</th>
+                                            <th @click="sort('php_ver')" class="sortable" :class="{ 'sort': currentSort === 'php_ver' , 'sort-desc': currentSort === 'php_ver' && currentSortDir === 'desc' }">PHP Ver</th>
+                                            <th @click="sort('sat_ver')" class="sortable" :class="{ 'sort': currentSort === 'sat_ver' , 'sort-desc': currentSort === 'sat_ver' && currentSortDir === 'desc' }">Sat Ver</th>
+                                            <th>Refreshed</th>
+                                            <td>&nbsp;</td>
                                         </tr>
-                                    </template>
-    
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody class="js-filter">
+                                        <template>
+                                            <tr class="active_site" :class="site.state" v-for="(site,key) in sortedSites" :key="site.hash">
+                                                <td>{{ site.name }}</td>
+                                                <td>{{ site.sys }}</td>
+                                                <td class="sys_ver">{{ site.sys_ver }}</td>
+                                                <td class="php_ver">{{ site.php_ver }}</td>
+                                                <td class="sat_ver">{{ site.sat_ver }}</td>
+                                                <td class="time">{{ site.date }}<template v-if="site.time !== ''">, </template>{{ site.time }}</td>
+                                                <td class="actions">
+                                                    <span uk-lightbox><a v-if="site.history" class="history uk-button uk-button-default" :href="site.history" data-type="iframe" data-uk-tooltip title="Show history"><span :uk-icon="'icon: clock'"></span></a></span>
+                                                    <button @click="refreshSingleSite" :data-id="site.hash" :data-name="site.name" class="refresh uk-button uk-button-primary" type="button" data-uk-tooltip title="Refresh"><span uk-icon="icon: refresh"></span></button>
+                                                </td>
+                                            </tr>
+                                        </template>
+        
+                                    </tbody>
+                                </table>
+                            </div> 
+                            <!-- /uk-overflow-auto -->
+
                         </div>
                     </div>
                     <!-- /active sites -->
@@ -118,34 +122,40 @@
                             </div>
                         </div>
                         <div class="uk-card-body">
+                            
+                            <!-- uk-overflow-auto -->
+                            <div class="uk-overflow-auto">
                                 <table class='sites uk-table uk-table-divider'>
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>System</th>
-                                            <th>Sys Ver</th>
-                                            <th>PHP Ver</th>
-                                            <th>Sat Ver</th>
-                                            <th>Refreshed</th>
-                                            <td>&nbsp;</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <template>
-                                            <tr class="inactive_site" :data-id="key" :data-name="site.name" :data-sys="site.sys" v-for="(site,key) in inactiveSites">
-                                                <td>{{ site.name }}</td>
-                                                <td>{{ site.sys }}</td>
-                                                <td class="sys_ver">{{ site.sys_ver }}</td>
-                                                <td class="php_ver">{{ site.php_ver }}</td>
-                                                <td class="sat_ver">{{ site.sat_ver }}</td>
-                                                <td class="time">{{ site.date }}<template v-if="site.time !== ''">, </template>{{ site.time }}</td>
-                                                <td class="actions">
-                                                    <span uk-lightbox><a v-if="site.history" class="history uk-button uk-button-default" :href="site.history" data-type="iframe" data-uk-tooltip title="Show history"><span :uk-icon="'icon: clock'"></span></a></span>
-                                                </td>
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>System</th>
+                                                <th>Sys Ver</th>
+                                                <th>PHP Ver</th>
+                                                <th>Sat Ver</th>
+                                                <th>Refreshed</th>
+                                                <td>&nbsp;</td>
                                             </tr>
-                                        </template>
-                                    </body>    
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <template>
+                                                <tr class="inactive_site" :data-id="key" :data-name="site.name" :data-sys="site.sys" v-for="(site,key) in inactiveSites">
+                                                    <td>{{ site.name }}</td>
+                                                    <td>{{ site.sys }}</td>
+                                                    <td class="sys_ver">{{ site.sys_ver }}</td>
+                                                    <td class="php_ver">{{ site.php_ver }}</td>
+                                                    <td class="sat_ver">{{ site.sat_ver }}</td>
+                                                    <td class="time">{{ site.date }}<template v-if="site.time !== ''">, </template>{{ site.time }}</td>
+                                                    <td class="actions">
+                                                        <span uk-lightbox><a v-if="site.history" class="history uk-button uk-button-default" :href="site.history" data-type="iframe" data-uk-tooltip title="Show history"><span :uk-icon="'icon: clock'"></span></a></span>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                        </body>    
+                                    </table>
+                            </div>
+                            <!-- /uk-overflow-auto -->
+
                         </div>
                     </div>
                     <!-- /inactive sites -->
