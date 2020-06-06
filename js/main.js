@@ -7,6 +7,7 @@ new Vue({
     el: '#sic',
     data: {
         sicVersion: '2.0.0',
+        configFileExists: true, // NOTE: we start with 'true' in order to prevent error message to "flicker" on page load
         activeSites: {},
         inactiveSites: {},
         activeSitesSystems: {},
@@ -21,11 +22,11 @@ new Vue({
         summaryUrl: ""
     },
     mounted () {
+        this.checkConfigFile();
         this.getActiveSites();
         this.getInactiveSites();
         this.getactiveSitesSystems();
         this.checkSummaryFile();
-        
     },
     computed: {
         progressDone: function(){
@@ -133,6 +134,12 @@ new Vue({
               }
             }
             return result;
+        },
+        checkConfigFile: function(){
+            axios.get(endpoints+'checkConfigFile.php')
+            .then(response => { 
+                this.configFileExists = response.data
+            })
         },
         getActiveSites: function(){
             axios.get(endpoints+'getActiveSites.php')
