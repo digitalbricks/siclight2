@@ -98,7 +98,11 @@ class SIC {
             
 
         } else {
-            throw new Exception('SIC: No sites-config.php found!');
+            /**
+             * NOTE: Code SIC-E-001 is used in checkConfigFile endpoint 
+             * to identify this single error (site-config.php does not exist)
+             */
+            throw new Exception('SIC: No sites-config.php found! (CODE: SIC-E-001)');
         }
     }
 
