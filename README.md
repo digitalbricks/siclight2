@@ -1,3 +1,4 @@
+![SIC Logo](img/sic-logo.svg)
 # Site Info Center LIGHT 2
 **Getting information about sites CMS and PHP versions with one click.** 
 
