@@ -13,8 +13,14 @@
  
             
             <div id="sic">
-
-                <h1>Site Info Center LIGHT <small>{{ sicVersion }}</small></h1>
+                <header class="uk-flex uk-flex-between uk-flex-bottom sic-header">
+                    <div class="logo">
+                        <img src="img/sic-logo.svg" alt="SIC Light 2.0">
+                    </div>
+                    <div class="version">
+                        Version: {{ sicVersion }}
+                    </div>
+                </header>
 
                 <template v-if="!configFileExists">
                     <!-- error message if sites-config.php does not exist -->

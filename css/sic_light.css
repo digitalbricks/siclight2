@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    padding: 40px 0 0 0;
+    padding: 2em 0 0 0;
 }
 
 body.history {
@@ -15,6 +15,13 @@ h1,
 h2,
 h3 {
     font-weight: 100;
+}
+
+.sic-header{
+    margin-bottom: 2em;
+}
+.sic-header .logo{
+    max-width: 50%;
 }
 
 .header-left {
