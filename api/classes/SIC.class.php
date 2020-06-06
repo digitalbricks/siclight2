@@ -98,8 +98,7 @@ class SIC {
             
 
         } else {
-            error_log('SIC: No sites-config.php found!');
-            die();
+            throw new Exception('SIC: No sites-config.php found!');
         }
     }
 
