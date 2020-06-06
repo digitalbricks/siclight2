@@ -24,10 +24,6 @@ h3 {
     max-width: 50%;
 }
 
-.header-left {
-    text-align: right;
-}
-
 .download-summary.hide {
     display: none;
 }

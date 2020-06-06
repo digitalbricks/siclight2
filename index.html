@@ -15,7 +15,7 @@
             <div id="sic">
                 <header class="uk-flex uk-flex-between uk-flex-bottom sic-header">
                     <div class="logo">
-                        <img src="img/sic-logo.svg" alt="SIC Light 2.0">
+                        <img src="img/sic-logo.svg" width="200" alt="SIC Light 2.0">
                     </div>
                     <div class="version">
                         Version: {{ sicVersion }}
@@ -33,7 +33,7 @@
                     <!-- active sites -->
                     <div class="uk-card uk-card-default">
                         <div class="uk-card-header">
-                            <div uk-grid class="uk-child-width-expand">
+                            <div uk-grid class="uk-flex uk-flex-between uk-flex-bottom">
                                 <div>
                                     <h2 class="uk-card-title">Active Sites <span class="uk-badge">{{ objectLength(activeSites) }}</span> <span v-if="objectLength(sortedSites) != objectLength(activeSites)" class="uk-badge filter-count-badge">Filtered: {{ objectLength(sortedSites) }}</span></h2>
                                 </div>
@@ -117,7 +117,7 @@
                         <div class="uk-card-header">
                             <div uk-grid class="uk-child-width-expand">
                                 <div>
-                                    <h2 class="uk-card-title">Inactive Sites <span class="uk-badge">{{ objectLength(inactiveSites) }}</span> <small>(still not or no longer maintained)</small></h2>
+                                    <h2 class="uk-card-title">Inactive Sites <span class="uk-badge">{{ objectLength(inactiveSites) }}</span></h2>
                                 </div>
                             </div>
                         </div>
