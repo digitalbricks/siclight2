@@ -2,7 +2,7 @@
 # Site Info Center LIGHT 2
 **Getting information about sites CMS and PHP versions with one click.** 
 
-_Version 2 of Site Info Center LIGHT 2 (SIC) is complete rewrite of [SIC version 1](https://github.com/digitalbricks/siclight), now using **Vue.js** for the frontend logic – wich is way faster (and easier to read) than the jQuery-driven version 1. In the new version, all the PHP-sided data processing is combined into a single PHP class with some essential methods exposed via a REST-like API to the Vue.js frontend. I recommend using version 2 – while version 1 will still do its job._
+_Site Info Center LIGHT (SIC) version 2 is an almost complete rewrite of [SIC version 1](https://github.com/digitalbricks/siclight), now using **Vue.js** for the frontend logic – wich is way faster (and easier to read) than the jQuery-driven version 1. In the new version, all the PHP-sided data processing is combined into a single PHP class with some essential methods exposed via a REST-like API to the Vue.js frontend. I recommend using version 2 – while version 1 will still do its job._
 
 
 ## Whats the purpose?
