@@ -6,7 +6,8 @@ const endpoints = "api/endpoints/";
 new Vue({
     el: '#sic',
     data: {
-        sicVersion: '2.0.0',
+        sicVersion: '2.0.1',
+        darkMode: false,
         configFileExists: true, // NOTE: we start with 'true' in order to prevent error message to "flicker" on page load
         activeSites: {},
         inactiveSites: {},
@@ -349,6 +350,24 @@ new Vue({
                     this.summaryUrl = "";
                 }
             })
+        },
+        toggleDarkMode: function(){
+            // switch between true and false
+            this.darkMode ^= true;
+
+            // store state in window object in order to access it in iframe (historyviewer)
+            window.darkMode = this.darkMode;
+
+            // get root <html> element
+            var root = document.documentElement;
+
+            // add class to <html> element based on state
+            // (via DOM manipulation, as element out of vue scope)
+            if(this.darkMode){
+                root.classList.add('darkmode');
+            } else {
+                root.classList.remove('darkmode');
+            }
         }
         
     }

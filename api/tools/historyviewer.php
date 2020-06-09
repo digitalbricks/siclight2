@@ -9,6 +9,14 @@ $sic = new SIC;
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../css/uikit.min.css" />
     <link rel="stylesheet" href="../../css/sic_light.css" />
+
+    <script>
+        var parent_window = parent.window;
+        if(parent_window.darkMode == 1);{
+            var root = document.documentElement;
+            root.classList.add('darkmode');
+        }
+    </script>
 </head>
 <body class="history">
     <div class="uk-container uk-container-center history-container">
@@ -51,8 +59,8 @@ $sic = new SIC;
         </div>
     </div>
 
-    <script src="../js/uikit.min.js"></script>
-    <script src="../js/uikit-icons.min.js"></script>
+    <script src="../../js/uikit.min.js"></script>
+    <script src="../../js/uikit-icons.min.js"></script>
 
 </body>
 </html>

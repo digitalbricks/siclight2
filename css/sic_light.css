@@ -240,6 +240,33 @@ span.uk-icon>svg {
     height: auto;
 }
 
+
+
+/* dark mode styles */
+.darkmode,
+.darkmode table tr:hover{
+    background-color: #111;
+}
+.darkmode .uk-card-default{
+    background-color: #333;
+}
+.darkmode .uk-card-default,
+.darkmode .uk-card-default .uk-card-title,
+.darkmode .uk-select,
+.darkmode .uk-search-default .uk-search-input{
+    color: #e5e5e5;
+}
+.darkmode .uk-button-default,
+.darkmode th.sortable.sort{
+    color: #fff;
+}
+.darkmode .uk-select{
+    background-color: transparent;
+}
+
+
+
+
 /*print styles*/
 @media print {
     html {
