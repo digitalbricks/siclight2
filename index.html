@@ -17,9 +17,14 @@
                     <div class="logo">
                         <img src="img/sic-logo.svg" width="200" alt="SIC Light 2.0">
                     </div>
-                    <div>
-                        <div @click="toggleDarkMode">
-                            Darkmode
+                    <div class="uk-text-right">
+                        <div class="darkmode-toggle">
+                                <span :data-uk-icon="'icon: paint-bucket'"></span> 
+                                <label class="darkmode-switch" data-uk-tooltip="title: Toggle Dark Mode; pos: bottom">
+                                    <input type="checkbox" @change="toggleDarkMode" :checked="darkMode">
+                                    <span class="slider round"></span>
+                                </label>
+                            
                         </div>
                         Version: {{ sicVersion }}
                     </div>

@@ -51,6 +51,10 @@ tr.refreshing {
     background-color: #fffceb;
     color: #000;
 }
+tr.refreshing a.history{
+    color: #666;
+    border-color: #666;
+}
 
 tr.refreshing button.refresh span {
     -webkit-animation: rotating 1s linear infinite;
@@ -70,6 +74,10 @@ td.recent {
 tr.refresh-error {
     background-color: #f3cece;
     color: #000;
+}
+tr.refresh-error a.history{
+    color: #666;
+    border-color: #666;
 }
 
 /* preventing too long php version strings*/
@@ -247,13 +255,17 @@ span.uk-icon>svg {
 .darkmode table tr:hover{
     background-color: #111;
 }
-.darkmode .uk-card-default{
+.darkmode .uk-card-default,
+.darkmode body.history{
     background-color: #333;
 }
 .darkmode .uk-card-default,
 .darkmode .uk-card-default .uk-card-title,
 .darkmode .uk-select,
-.darkmode .uk-search-default .uk-search-input{
+.darkmode .uk-search-default .uk-search-input,
+.darkmode body.history,
+.darkmode h2,
+.darkmode h1{
     color: #e5e5e5;
 }
 .darkmode .uk-button-default,
@@ -263,7 +275,71 @@ span.uk-icon>svg {
 .darkmode .uk-select{
     background-color: transparent;
 }
+.darkmode tr.refreshing{
+    background-color: rgba(255,252,235,0.5);
+}
+.darkmode tr.refresh-error{
+    background-color: rgba(243,206,206,0.5);
+}
 
+
+/* darkmode switch */
+/* Source: https://www.w3schools.com/howto/howto_css_switch.asp*/
+.darkmode-toggle span{
+    position: relative;
+    top: -0.3em;
+    
+}
+.darkmode-switch {
+    position: relative;
+    display: inline-block;
+    width: 2.15em;
+    height: 1.15em;
+}
+.darkmode-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.darkmode-switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.darkmode-switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 1em;
+    width: 1em;
+    left: 0.1em;
+    bottom: 0.1em;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.darkmode-switch input:checked + .slider {
+background-color: #1e87f0;
+}
+.darkmode-switch input:focus + .slider {
+box-shadow: 0 0 1px #1e87f0;
+}
+.darkmode-switch input:checked + .slider:before {
+-webkit-transform: translateX(1em);
+-ms-transform: translateX(1em);
+transform: translateX(1em);
+}
+.darkmode-switch .slider.round {
+border-radius: 3em;
+}
+.darkmode-switch .slider.round:before {
+border-radius: 50%;
+} 
 
 
 
