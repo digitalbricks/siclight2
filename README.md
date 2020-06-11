@@ -13,6 +13,27 @@ You have a bunch of sites with a couple of different content management systems 
 **Site Info Center LIGHT (SIC) fetches all that information for you with just one click. You only have to configure your sites once in SIC and every time you click SIC's refresh button you get the current version of the CMS and PHP versions in use.**
 
 
+## Some features
+### Refresh information for all sites at once
+
+![Refresh information for all sites at once](https://raw.githubusercontent.com/digitalbricks/siclight2/assets/sic-demo-refresh.gif)
+
+
+### Filter by CMS
+
+![Filter by CMS](https://raw.githubusercontent.com/digitalbricks/siclight2/assets/sic-demo-sysselect.gif)
+
+
+### Search sites
+
+![Search sites](https://raw.githubusercontent.com/digitalbricks/siclight2/assets/sic-demo-search.gif)
+
+### Dark Mode
+
+![Dark Mode](https://raw.githubusercontent.com/digitalbricks/siclight2/assets/sic-light-dark.jpg)
+
+
+
 ## Requirements
 **SIC** and the required **[SIC Satellite](https://github.com/digitalbricks/sic-satellite)** (more details in short) are written in PHP.  SIC, the user interface or frontend, uses **CURL** to communicate with the satellite, so your (local) server running SIC must have CURL installed - which is the case in most environments, especially if you local server is driven by XAMPP or MAMP.
 
