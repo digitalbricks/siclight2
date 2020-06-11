@@ -12,9 +12,11 @@ $sic = new SIC;
 
     <script>
         var parent_window = parent.window;
-        if(parent_window.darkMode == 1);{
-            var root = document.documentElement;
+        var root = document.documentElement;
+        if(parent_window.darkMode == true){
             root.classList.add('darkmode');
+        }else{
+            root.classList.remove("darkmode");
         }
     </script>
 </head>
