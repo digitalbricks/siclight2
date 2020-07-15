@@ -1,5 +1,8 @@
 # Changelog Site Info Center LIGHT 2
 
+## 2.0.3 – 11.06.2020
+* added autofocus to site search input (cursor in input field after page load)
+
 ## 2.0.2 – 11.06.2020
 * fixed an issue with darkmode
 
