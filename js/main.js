@@ -6,7 +6,7 @@ const endpoints = "api/endpoints/";
 new Vue({
     el: '#sic',
     data: {
-        sicVersion: '2.0.3',
+        sicVersion: '2.0.4',
         darkMode: false,
         configFileExists: true, // NOTE: we start with 'true' in order to prevent error message to "flicker" on page load
         activeSites: {},
@@ -148,7 +148,7 @@ new Vue({
                 var result = response.data;
                 // add 'state' property, used for css classes
                 for(var k in result) {
-                    result[k].state = '';
+                    result[k].state = 'notRefreshed';
                 }
                 this.activeSites = response.data
             })

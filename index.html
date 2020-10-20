@@ -102,7 +102,13 @@
                                                 <td class="sys_ver">{{ site.sys_ver }}</td>
                                                 <td class="php_ver">{{ site.php_ver }}</td>
                                                 <td class="sat_ver">{{ site.sat_ver }}</td>
-                                                <td class="time">{{ site.date }}<template v-if="site.time !== ''">, </template>{{ site.time }}</td>
+                                                <td class="time">
+                                                    {{ site.date }}<template v-if="site.time !== ''">, </template>{{ site.time }}
+                                                    <!-- show notice when (maybe) outdated data is shown -->
+                                                    <template v-if="site.state == 'notRefreshed' && site.date!==''">
+                                                        &nbsp;<span uk-icon="icon: info" uk-tooltip title="The data shown is from the last Refresh-All action and may be outdated"></span>
+                                                    </template>
+                                                </td>
                                                 <td class="actions">
                                                     <span uk-lightbox><a v-if="site.history" class="history uk-button uk-button-default" :href="site.history" data-type="iframe" data-uk-tooltip title="Show history"><span :uk-icon="'icon: clock'"></span></a></span>
                                                     <button @click="refreshSingleSite" :data-id="site.hash" :data-name="site.name" class="refresh uk-button uk-button-primary" type="button" data-uk-tooltip title="Refresh"><span uk-icon="icon: refresh"></span></button>

@@ -1,5 +1,8 @@
 # Changelog Site Info Center LIGHT 2
 
+## 2.0.4 – 20.10.2020
+* added a tooltip notice when site data is shown from CSV summary (may be outdated)
+
 ## 2.0.3 – 11.06.2020
 * added autofocus to site search input (cursor in input field after page load)
 
