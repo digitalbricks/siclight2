@@ -727,4 +727,51 @@ class SIC {
 
    }
 
+   
+   /**
+    * getLatestResult
+    *
+    * @param  string $hash
+    * @param  bool $json
+    * @return mixed JSON or plain text or bool (false)
+    */
+   public function getLatestResult($hash, bool $json=true){
+        // get path to history file
+        $file = $path = $this->getCsvSavePath($hash);
+        
+        if(file_exists($file)){
+            // read last line from history file
+            $data_csv = $this->tailCustom($file);
+            $data_arr = str_getcsv($data_csv);
+
+             // check if expected columns exists (skip if not)
+             if(!array_key_exists(0,$data_arr) OR
+             !array_key_exists(1,$data_arr) OR
+             !array_key_exists(2,$data_arr) OR
+             !array_key_exists(3,$data_arr) OR
+             !array_key_exists(4,$data_arr)
+             ){
+                 return false;
+             }
+
+            // create array
+            $array=array(
+                'sys_ver' => $data_arr[1],
+                'php_ver' => $data_arr[2],
+                'sat_ver' => $data_arr[3],
+                'date' => $data_arr[4],
+                'time' => $data_arr[5],
+            );
+
+            if($json){
+                return json_encode($array, JSON_PRETTY_PRINT);
+            } else {
+                return $array;
+            }
+
+        }
+
+        return false;
+        
+   }
 } 
