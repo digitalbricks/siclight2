@@ -24,11 +24,14 @@ class SIC {
             ksort($sites);
 
             // get latest data stored in summary CSV
-            $latest_data = $this->getSummary(false);
+            //$latest_data = $this->getSummary(false);
 
             // add site ID (hash of array key) to array
             foreach($sites as $key => $value){
                 $hash = $this->getSiteHash($key);
+
+                // get latest data stored in history CSV
+                $latest_data = $this->getLatestResult($key,false);
 
                 // check if we have some latest data in summary
                 // -- set defaults
@@ -37,24 +40,26 @@ class SIC {
                 $ld['sat_ver'] = 'n/a';
                 $ld['time'] = "";
                 $ld['date'] = "";
-                // -- set values from $lastet_data (summary CSV)
-                if(array_key_exists($hash,$latest_data)){
-                    if(array_key_exists('sys_ver', $latest_data[$hash])){
-                        $ld['sys_ver'] = $latest_data[$hash]['sys_ver'];
+                
+                // -- set values from $lastet_data (history CSV)
+                if($latest_data){
+                    if(array_key_exists('sys_ver', $latest_data)){
+                        $ld['sys_ver'] = $latest_data['sys_ver'];
                     }
-                    if(array_key_exists('php_ver', $latest_data[$hash])){
-                        $ld['php_ver'] = $latest_data[$hash]['php_ver'];
+                    if(array_key_exists('php_ver', $latest_data)){
+                        $ld['php_ver'] = $latest_data['php_ver'];
                     }
-                    if(array_key_exists('sat_ver', $latest_data[$hash])){
-                        $ld['sat_ver'] = $latest_data[$hash]['sat_ver'];
+                    if(array_key_exists('sat_ver', $latest_data)){
+                        $ld['sat_ver'] = $latest_data['sat_ver'];
                     }
-                    if(array_key_exists('time', $latest_data[$hash])){
-                        $ld['time'] = $latest_data[$hash]['time'];
+                    if(array_key_exists('time', $latest_data)){
+                        $ld['time'] = $latest_data['time'];
                     }
-                    if(array_key_exists('date', $latest_data[$hash])){
-                        $ld['date'] = $latest_data[$hash]['date'];
+                    if(array_key_exists('date', $latest_data)){
+                        $ld['date'] = $latest_data['date'];
                     }
                 }
+                
 
 
                 // create new multidimensional array with hash as key
@@ -731,13 +736,18 @@ class SIC {
    /**
     * getLatestResult
     *
-    * @param  string $hash
+    * @param  string $sitename
     * @param  bool $json
     * @return mixed JSON or plain text or bool (false)
+    *
+    * NOTE: We're using sitename innstead hash here because
+    * hash is not yet available when this method is called
+    * in the class constructor.
     */
-   public function getLatestResult($hash, bool $json=true){
+   public function getLatestResult($sitename, bool $json=true){
         // get path to history file
-        $file = $path = $this->getCsvSavePath($hash);
+        $filename = $this->getCsvFileName($sitename);
+        $file = $this->basepath.$this->historydirectory."/".$filename;
         
         if(file_exists($file)){
             // read last line from history file
@@ -756,6 +766,7 @@ class SIC {
 
             // create array
             $array=array(
+                'sys' => $data_arr[0],
                 'sys_ver' => $data_arr[1],
                 'php_ver' => $data_arr[2],
                 'sat_ver' => $data_arr[3],
@@ -772,6 +783,5 @@ class SIC {
         }
 
         return false;
-        
    }
 } 
