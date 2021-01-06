@@ -106,7 +106,7 @@
                                                     {{ site.date }}<template v-if="site.time !== ''">, </template>{{ site.time }}
                                                     <!-- show notice when (maybe) outdated data is shown -->
                                                     <template v-if="site.state == 'notRefreshed' && site.date!==''">
-                                                        &nbsp;<span uk-icon="icon: info" uk-tooltip title="The data shown is from the last Refresh-All action and may be outdated"></span>
+                                                        &nbsp;<span uk-icon="icon: info" uk-tooltip title="The data shown is from the history CSV file and may be outdated"></span>
                                                     </template>
                                                 </td>
                                                 <td class="actions">
