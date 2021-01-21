@@ -258,8 +258,12 @@ class SIC {
                     $response['message'] = "Satellite not found";
                     $response['hash'] = $hash;
                     $response['name'] = $this->getSiteName($hash);
-                } else{
-                    return false;
+                } 
+                // other HTTP response codes
+                else{
+                    $response['message'] = "Server answered with HTTP status code {$response['statuscode']}";
+                    $response['hash'] = $hash;
+                    $response['name'] = $this->getSiteName($hash);
                 }
 
                 // json or array output?
