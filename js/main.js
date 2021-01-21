@@ -6,7 +6,7 @@ const endpoints = "api/endpoints/";
 new Vue({
     el: '#sic',
     data: {
-        sicVersion: '2.1.0',
+        sicVersion: '2.2.0',
         darkMode: false,
         configFileExists: true, // NOTE: we start with 'true' in order to prevent error message to "flicker" on page load
         activeSites: {},
