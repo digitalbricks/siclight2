@@ -1,12 +1,17 @@
+/**
+ * Relative URL (from root) to API endpoints
+ */
 const endpoints = "api/endpoints/";
 
 
-
-
+/**
+ * The main controller of SIClight
+ * usinge VueJs
+ */
 new Vue({
     el: '#sic',
     data: {
-        sicVersion: '2.2.0',
+        sicVersion: '2.2.1',
         darkMode: false,
         configFileExists: true, // NOTE: we start with 'true' in order to prevent error message to "flicker" on page load
         activeSites: {},
@@ -371,4 +376,17 @@ new Vue({
         }
         
     }
-}); 
+});
+
+
+/**
+ * Functions for toggling inactive sites accordion-like
+ * when clicking on card header.
+ */
+var inactiveSitesHeader = document.querySelector('.inactivesites__header');
+inactiveSitesHeader.addEventListener("click", function(event){
+    event.preventDefault()
+    inactiveSitesHeader.classList.toggle('active');
+    console.log('clicked!');
+});
+

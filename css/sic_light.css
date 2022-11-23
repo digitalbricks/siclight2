@@ -32,6 +32,24 @@ h3 {
     margin-top: 40px;
 }
 
+.inactivesites__header{
+    cursor: pointer;
+}
+.inactivesites__header h2::before{
+    content: "+";
+    display: inline-block;
+    margin-right: 0.6em;
+}
+.inactivesites__header.active h2::before{
+    content: "-";
+}
+.inactivesites__card-body{
+    display: none;
+}
+.inactivesites__header.active+.inactivesites__card-body{
+    display: block;
+}
+
 .uk-table td {
     vertical-align: middle;
     font-size: 0.9em;

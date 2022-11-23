@@ -1,5 +1,8 @@
 # Changelog Site Info Center LIGHT 2
 
+## 2.2.1 – 23.11.2022
+* inactive sites list collapsed on load, toggled on click, in order to unclutter SIC when there is a large amount of inactive sites
+
 ## 2.2.0 – 21.01.2021
 * improved handling of other HTTP response codes in `getSatelliteResponse()`;
 
