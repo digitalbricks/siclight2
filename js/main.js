@@ -38,6 +38,7 @@ const siclight = Vue.createApp({
     },
     computed: {
         progressDone: function(){
+            console.log('Queue length: ' + this.requestQueueLength + ' Progress max: ' + this.progressMax + ' Progress done: ' + (this.progressMax - this.requestQueueLength));
             if(this.requestQueueLength>0){
                 return this.progressMax - this.requestQueueLength;
             } else {
@@ -129,8 +130,13 @@ const siclight = Vue.createApp({
     },
     watch: {
         // whenever requestQueue changes, this function will run
-        requestQueue: function () {
-            this.requestQueueLength = this.requestQueue.length;
+        requestQueue: {
+            // we have to use deep:true in order to watch changes inside the array
+            deep: true,
+            // we also have to move the method to a handler function
+            handler(){
+                this.requestQueueLength = this.requestQueue.length;
+            }
         }
     },
     methods: {
