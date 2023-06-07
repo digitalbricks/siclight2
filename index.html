@@ -152,8 +152,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <template>
-                                                <tr class="inactive_site" :data-id="key" :data-name="site.name" :data-sys="site.sys" v-for="(site,key) in inactiveSites">
+                                            <template v-for="(site,key) in inactiveSites">
+                                                <tr class="inactive_site" :data-id="key" :data-name="site.name" :data-sys="site.sys">
                                                     <td>{{ site.name }}</td>
                                                     <td>{{ site.sys }}</td>
                                                     <td class="sys_ver">{{ site.sys_ver }}</td>
