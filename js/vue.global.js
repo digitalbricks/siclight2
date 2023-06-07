@@ -1,3 +1,5 @@
+/* source: https://unpkg.com/vue@3.3.4/dist/vue.global.js */
+
 var Vue = (function (exports) {
     'use strict';
 

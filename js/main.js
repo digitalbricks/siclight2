@@ -6,26 +6,28 @@ const endpoints = "api/endpoints/";
 
 /**
  * The main controller of SIClight
- * usinge VueJs
+ * usinge VueJs 3
  */
-new Vue({
-    el: '#sic',
-    data: {
-        sicVersion: '2.2.1',
-        darkMode: false,
-        configFileExists: true, // NOTE: we start with 'true' in order to prevent error message to "flicker" on page load
-        activeSites: {},
-        inactiveSites: {},
-        activeSitesSystems: {},
-        requestQueue: [],
-        requestQueueLength: 0,
-        progressMax: 0,
-        currentSort:'name',
-        currentSortDir:'asc',
-        searchTerm: "",
-        systemFilter: "",
-        isAllSitesRefresh: false,
-        summaryUrl: ""
+
+const siclight = Vue.createApp({
+    data() {
+        return {
+            sicVersion: '2.2.1',
+            darkMode: false,
+            configFileExists: true, // NOTE: we start with 'true' in order to prevent error message to "flicker" on page load
+            activeSites: {},
+            inactiveSites: {},
+            activeSitesSystems: {},
+            requestQueue: [],
+            requestQueueLength: 0,
+            progressMax: 0,
+            currentSort:'name',
+            currentSortDir:'asc',
+            searchTerm: "",
+            systemFilter: "",
+            isAllSitesRefresh: false,
+            summaryUrl: ""
+        }
     },
     mounted () {
         this.checkConfigFile();
@@ -48,11 +50,11 @@ new Vue({
         */
         sortedSites:function() {
             return Object.values(this.filteredSites).sort((a,b) => {
-              let modifier = 1;
-              if(this.currentSortDir === 'desc') modifier = -1;
-              if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
-              if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
-              return 0;
+                let modifier = 1;
+                if(this.currentSortDir === 'desc') modifier = -1;
+                if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
+                if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+                return 0;
             });
         },
         filteredSites: function(){
@@ -69,12 +71,12 @@ new Vue({
                     // getting searched system (after : but before first space)
                     let sys_after = s_splitted[1].split(" ",2);
                     sysToSearch = sys_after[0];
-                    
+
                     // getting additional search after space (if any)
                     if(sys_after[1]!==undefined){
                         sysAdditional = sys_after[1];
                     }
-                    
+
                     //console.log('System search detected! System: ' + sysToSearch + ' Additional: ' + sysAdditional);
                     // indicate system search
                     sysSearch = true;
@@ -86,20 +88,20 @@ new Vue({
                     var id = key;
 
                     // create one concatenated string for search
-                    var concatenatedValues = 
-                        value.name.toLowerCase() + '|' + 
-                        value.sys.toLowerCase() + '|' + 
-                        value.sys_ver.toLowerCase() + '|' + 
-                        value.php_ver.toLowerCase() + '|' + 
-                        value.sat_ver.toLowerCase() + '|' + 
+                    var concatenatedValues =
+                        value.name.toLowerCase() + '|' +
+                        value.sys.toLowerCase() + '|' +
+                        value.sys_ver.toLowerCase() + '|' +
+                        value.php_ver.toLowerCase() + '|' +
+                        value.sat_ver.toLowerCase() + '|' +
                         value.date.toLowerCase();
 
                     var found = false;
-                    
+
                     if(sysSearch){
                         // system search
-                        if(value.sys.toLowerCase().indexOf(sysToSearch)!=-1) { 
-                            // check if we have additional search 
+                        if(value.sys.toLowerCase().indexOf(sysToSearch)!=-1) {
+                            // check if we have additional search
                             if(sysAdditional !== ""){
                                 if(concatenatedValues.indexOf(sysAdditional)!=-1) { found = true };
                             } else {
@@ -110,65 +112,65 @@ new Vue({
                         // normal search
                         if(concatenatedValues.indexOf(search)!=-1) { found = true };
                     }
-                    
+
                     // if match was found, add it to foundsites
                     if(found){
                         if(foundsites[id] === undefined){
                             foundsites[id] = value;
                         }
-                    }   
+                    }
                 }
                 return foundsites;
-               
+
             } else {
                 return this.activeSites;
-            } 
+            }
         }
     },
     watch: {
         // whenever requestQueue changes, this function will run
         requestQueue: function () {
-          this.requestQueueLength = this.requestQueue.length;
+            this.requestQueueLength = this.requestQueue.length;
         }
     },
     methods: {
         objectLength: function(obj) {
             var result = 0;
             for(var prop in obj) {
-              if (obj.hasOwnProperty(prop)) {
-                result++;
-              }
+                if (obj.hasOwnProperty(prop)) {
+                    result++;
+                }
             }
             return result;
         },
         checkConfigFile: function(){
             axios.get(endpoints+'checkConfigFile.php')
-            .then(response => { 
-                this.configFileExists = response.data
-            })
+                .then(response => {
+                    this.configFileExists = response.data
+                })
         },
         getActiveSites: function(){
             axios.get(endpoints+'getActiveSites.php')
-            .then(response => { 
-                var result = response.data;
-                // add 'state' property, used for css classes
-                for(var k in result) {
-                    result[k].state = 'notRefreshed';
-                }
-                this.activeSites = response.data
-            })
+                .then(response => {
+                    var result = response.data;
+                    // add 'state' property, used for css classes
+                    for(var k in result) {
+                        result[k].state = 'notRefreshed';
+                    }
+                    this.activeSites = response.data
+                })
         },
         getInactiveSites: function(){
             axios.get(endpoints+'getInactiveSites.php')
-            .then(response => { 
-                this.inactiveSites = response.data
-            })
+                .then(response => {
+                    this.inactiveSites = response.data
+                })
         },
         getactiveSitesSystems: function(){
             axios.get(endpoints+'getActiveSitesSystems.php')
-            .then(response => { 
-                this.activeSitesSystems = response.data
-            })
+                .then(response => {
+                    this.activeSitesSystems = response.data
+                })
         },
         refreshSingleSite: function(event){
             var id = event.currentTarget.getAttribute('data-id');
@@ -196,7 +198,7 @@ new Vue({
             var RequestPromises = []
 
             this.progressMax = this.requestQueue.length;
-            
+
             // loop through requestQueue
             for (let [key, value] of Object.entries(this.requestQueue)) {
                 //console.log(`${key}: ${value}`);
@@ -214,59 +216,59 @@ new Vue({
                 var SinglePromise = axios.post(endpoints+'getSatelliteResponse.php', {
                     hash: id
                 })
-                .then(response => { 
+                    .then(response => {
 
-                    // getting id (hash) and name from sat
-                    // NOTE: we cannot use var 'id' here, because of promise
-                    var hash = response.data.hash;
+                        // getting id (hash) and name from sat
+                        // NOTE: we cannot use var 'id' here, because of promise
+                        var hash = response.data.hash;
                         sitename = response.data.name;
 
-                    if(response.data.statuscode==200){
-                        // getting satellite data
-                        var satdata = response.data.response;
-                        satdata = JSON.parse(satdata);
+                        if(response.data.statuscode==200){
+                            // getting satellite data
+                            var satdata = response.data.response;
+                            satdata = JSON.parse(satdata);
 
-                        // getting time and date
-                        var time = response.data.time;
-                        var date = response.data.date;  
-        
-                        // getting URL to history CSV file
-                        var history = response.data.history;
-                        
-                        // update data
-                        this.activeSites[hash].sys_ver = satdata.sys_ver;
-                        this.activeSites[hash].php_ver = satdata.php_ver;
-                        this.activeSites[hash].sat_ver = satdata.sat_ver;
-                        this.activeSites[hash].date = date;
-                        this.activeSites[hash].time = time;
-                        this.activeSites[hash].history = history;
-                        
-                        // remove '.refreshing' class from row
-                        this.activeSites[hash].state = "";
-                    } else {
-                        this.activeSites[hash].state = "refresh-error";
-                        this.notify('danger','<strong>'+this.activeSites[hash].name+': </strong>Refresh failed<br/><small>' + response.data.message +'</small>');
-                    }   
-                    
-                    
-                    // remove one element from the beginning of the array
-                    // (=latest processed element)
-                    this.requestQueue.shift();
-                    console.log(hash + ' (' + sitename + ') processed, '+this.requestQueue.length + ' more items to process ...');
+                            // getting time and date
+                            var time = response.data.time;
+                            var date = response.data.date;
 
-                })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                })
-                .then(function () {
-                    // always executed
-                });
-                
+                            // getting URL to history CSV file
+                            var history = response.data.history;
+
+                            // update data
+                            this.activeSites[hash].sys_ver = satdata.sys_ver;
+                            this.activeSites[hash].php_ver = satdata.php_ver;
+                            this.activeSites[hash].sat_ver = satdata.sat_ver;
+                            this.activeSites[hash].date = date;
+                            this.activeSites[hash].time = time;
+                            this.activeSites[hash].history = history;
+
+                            // remove '.refreshing' class from row
+                            this.activeSites[hash].state = "";
+                        } else {
+                            this.activeSites[hash].state = "refresh-error";
+                            this.notify('danger','<strong>'+this.activeSites[hash].name+': </strong>Refresh failed<br/><small>' + response.data.message +'</small>');
+                        }
+
+
+                        // remove one element from the beginning of the array
+                        // (=latest processed element)
+                        this.requestQueue.shift();
+                        console.log(hash + ' (' + sitename + ') processed, '+this.requestQueue.length + ' more items to process ...');
+
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+
 
                 // push SinglePromise to array RequestPromises
                 RequestPromises.push(SinglePromise);
-               
+
 
             } // end for() llop
 
@@ -282,10 +284,10 @@ new Vue({
                     this.writeSummary();
                 }
             });
-            
-            
+
+
         },
-        /* 
+        /*
         A helper method used in doRefresh() Promis.all in order to execute Promis.all
         even if there was an error during satellite fetching.
         Source: https://stackoverflow.com/questions/31424561/wait-until-all-es6-promises-complete-even-rejected-promises/31424853#31424853
@@ -309,7 +311,7 @@ new Vue({
         sort: function(s) {
             // if s == current sort, reverse
             if(s === this.currentSort) {
-              this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
+                this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
             } else {
                 this.currentSortDir = 'asc';
             }
@@ -329,32 +331,32 @@ new Vue({
         writeSummary: function(){
             if(this.isAllSitesRefresh === true){
                 axios.get(endpoints+'writeSummaryAndGetUrl.php')
-                .then(response => { 
-                    if(response.data != false || response.data !=""){
-                        this.summaryUrl = response.data;
-                        // notiy that summary is available
-                        UIkit.notification({
-                            message: '<div style="text-align:center"><h2>Summary created</h2><a class="uk-button uk-button-danger" href="'+this.summaryUrl+'" target="_blank">Dowload</a></div>',
-                            status: 'primary',
-                            pos: 'bottom-right',
-                            timeout: 15000
-                        }); 
-                    } else {
-                        this.summaryUrl = "";
-                    }
-                })
+                    .then(response => {
+                        if(response.data != false || response.data !=""){
+                            this.summaryUrl = response.data;
+                            // notiy that summary is available
+                            UIkit.notification({
+                                message: '<div style="text-align:center"><h2>Summary created</h2><a class="uk-button uk-button-danger" href="'+this.summaryUrl+'" target="_blank">Dowload</a></div>',
+                                status: 'primary',
+                                pos: 'bottom-right',
+                                timeout: 15000
+                            });
+                        } else {
+                            this.summaryUrl = "";
+                        }
+                    })
             }
             this.isAllSitesRefresh = false;
         },
         checkSummaryFile: function(){
             axios.get(endpoints+'checkSummaryFileAndGetUrl.php')
-            .then(response => { 
-                if(response.data != false || response.data !=""){
-                    this.summaryUrl = response.data; 
-                } else {
-                    this.summaryUrl = "";
-                }
-            })
+                .then(response => {
+                    if(response.data != false || response.data !=""){
+                        this.summaryUrl = response.data;
+                    } else {
+                        this.summaryUrl = "";
+                    }
+                })
         },
         toggleDarkMode: function(){
             // switch between true and false
@@ -374,19 +376,12 @@ new Vue({
                 root.classList.remove('darkmode');
             }
         }
-        
+
     }
 });
 
 
-/**
- * Functions for toggling inactive sites accordion-like
- * when clicking on card header.
- */
-var inactiveSitesHeader = document.querySelector('.inactivesites__header');
-inactiveSitesHeader.addEventListener("click", function(event){
-    event.preventDefault()
-    inactiveSitesHeader.classList.toggle('active');
-    console.log('clicked!');
-});
+
+siclight.mount('#sic');
+
 
