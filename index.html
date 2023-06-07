@@ -95,8 +95,8 @@
                                         </tr>
                                     </thead>
                                     <tbody class="js-filter">
-                                        <template>
-                                            <tr class="active_site" :class="site.state" v-for="(site,key) in sortedSites" :key="site.hash">
+                                        <template v-for="(site,key) in sortedSites" :key="site.hash">
+                                            <tr class="active_site" :class="site.state">
                                                 <td>{{ site.name }}</td>
                                                 <td>{{ site.sys }}</td>
                                                 <td class="sys_ver">{{ site.sys_ver }}</td>

@@ -12,7 +12,7 @@ const endpoints = "api/endpoints/";
 const siclight = Vue.createApp({
     data() {
         return {
-            sicVersion: '2.2.1',
+            sicVersion: '2.3.0',
             darkMode: false,
             configFileExists: true, // NOTE: we start with 'true' in order to prevent error message to "flicker" on page load
             activeSites: {},
