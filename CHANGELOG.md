@@ -1,5 +1,9 @@
 # Changelog Site Info Center LIGHT 2
 
+## 2.3.0 – 07.06.2023
+* replaced Vue.js v2.6.11 with v3.3.4
+* adapted code to Vue.js v3
+
 ## 2.2.1 – 23.11.2022
 * inactive sites list collapsed on load, toggled on click, in order to unclutter SIC when there is a large amount of inactive sites
 
