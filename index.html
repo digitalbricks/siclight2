@@ -59,8 +59,8 @@
                                 <div class="uk-width-1-3@s uk-width-1-5@m uk-width-1-5@l">
                                     <select class="uk-select" @change="sysFilterChange($event)" v-model="systemFilter" id="system-filter">
                                         <option value="">System</option>
-                                        <template v-for="(count,system) in activeSitesSystems">
-                                            <option :value="system" :key="system">{{ system }} ({{ count }})</option>
+                                        <template v-for="(count,system) in activeSitesSystems" :key="system">
+                                            <option :value="system">{{ system }} ({{ count }})</option>
                                         </template> 
                                         
                                     </select>
