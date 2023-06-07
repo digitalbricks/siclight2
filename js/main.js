@@ -38,7 +38,6 @@ const siclight = Vue.createApp({
     },
     computed: {
         progressDone: function(){
-            console.log('Queue length: ' + this.requestQueueLength + ' Progress max: ' + this.progressMax + ' Progress done: ' + (this.progressMax - this.requestQueueLength));
             if(this.requestQueueLength>0){
                 return this.progressMax - this.requestQueueLength;
             } else {
@@ -279,13 +278,14 @@ const siclight = Vue.createApp({
             } // end for() llop
 
             /*
-            execute if all requests (promises) completet (with or without error)
+            execute if all requests (promises) completed (with or without error)
             see promiseReflect() method for info why .map() is invoked
             */
             Promise.all(RequestPromises.map(this.promiseReflect)).then(response => {
                 console.log('Queue completed.');
                 this.notify('success','<strong>Refresh queue completed</strong>');
-
+                // reset requestQueue (reset progress bar)
+                this.requestQueue = [];
                 if(this.isAllSitesRefresh === true){
                     this.writeSummary();
                 }
