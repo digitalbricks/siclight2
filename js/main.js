@@ -391,3 +391,13 @@ const siclight = Vue.createApp({
 siclight.mount('#sic');
 
 
+/**
+ * Functions for toggling inactive sites accordion-like
+ * when clicking on card header.
+ */
+var inactiveSitesHeader = document.querySelector('.inactivesites__header');
+inactiveSitesHeader.addEventListener("click", function(event){
+    event.preventDefault()
+    inactiveSitesHeader.classList.toggle('active');
+    console.log('clicked!');
+});
