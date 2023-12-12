@@ -2,6 +2,8 @@
 # Site Info Center LIGHT 2
 **Getting information about sites CMS and PHP versions with one click.** 
 
+**⚠️ IMPORTANT: There is a new Version of Site Info Center available – [Site Info Center 3 (SIC3)](https://github.com/digitalbricks/sic3). In opposite to this version here, in SIC3 you don't need to configure your sites in a config file – instead there is a UI for managing sites. So give [Site Info Center 3 (SIC3)](https://github.com/digitalbricks/sic3) a try.  The version in this repository (v2) will not longer be maintained (but will still work).**
+
 _Site Info Center LIGHT (SIC) version 2 is an almost complete rewrite of [SIC version 1](https://github.com/digitalbricks/siclight), now using **Vue.js** for the frontend logic – wich is way faster (and easier to read) than the jQuery-driven version 1. In the new version, all the PHP-sided data processing is combined into a single PHP class with some essential methods exposed via a REST-like API to the Vue.js frontend. I recommend using version 2 – while version 1 will still do its job._
 
 
